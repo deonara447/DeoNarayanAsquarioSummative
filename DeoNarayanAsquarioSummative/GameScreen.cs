@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 namespace DeoNarayanAsquarioSummative
 {
@@ -16,8 +17,12 @@ namespace DeoNarayanAsquarioSummative
         //MainScreen
         MainScreen ms = new MainScreen();
 
-        //Random number generator
+        //random number generator
         Random randGen = new Random();
+
+        //declaring sounds
+        SoundPlayer winnerSound = new SoundPlayer(Properties.Resources.winnerSound);
+        SoundPlayer startSound = new SoundPlayer(Properties.Resources.startSound);
 
         //Movement booleans for p1 and p2
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
@@ -79,6 +84,9 @@ namespace DeoNarayanAsquarioSummative
         }
         public void OnStart()
         {
+            //play startSound
+            startSound.Play();
+
             //starting player sizes
             p1Size = p2Size = 5;
 
@@ -463,6 +471,9 @@ namespace DeoNarayanAsquarioSummative
                 {
                     //p1 wins logic
 
+                    //play winnerSound
+                    winnerSound.Play();
+
                     //background colour is white
                     this.BackColor = Color.White;
                     this.Refresh();
@@ -493,7 +504,7 @@ namespace DeoNarayanAsquarioSummative
 
                     gameLoop.Enabled = false;
 
-                    
+                    winnerSound.Play();
 
                     this.BackColor = Color.White;
                     this.Refresh();
