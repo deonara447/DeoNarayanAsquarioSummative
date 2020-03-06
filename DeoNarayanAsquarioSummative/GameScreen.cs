@@ -83,8 +83,8 @@ namespace DeoNarayanAsquarioSummative
             p1Size = p2Size = 5;
 
             //initial location of players relative to size of screen
-            p1 = new Food(Screen.PrimaryScreen.WorkingArea.Width / 3, Screen.PrimaryScreen.WorkingArea.Height / 2, p1Size);
-            p2 = new Food(2 * Screen.PrimaryScreen.WorkingArea.Width / 3, Screen.PrimaryScreen.WorkingArea.Height / 2, p2Size);
+            p1 = new Food(2 * Screen.PrimaryScreen.WorkingArea.Width / 3, Screen.PrimaryScreen.WorkingArea.Height / 2, p1Size);
+            p2 = new Food(Screen.PrimaryScreen.WorkingArea.Width / 3, Screen.PrimaryScreen.WorkingArea.Height / 2, p2Size);
 
             //beginning food generation speeds
             foodCounter = 0;
@@ -455,52 +455,58 @@ namespace DeoNarayanAsquarioSummative
                 powerUpList.Remove(p);
             }
 
-            //p1 wins logic
-            if (p1.Eaten(p2) == true)
+            //if p1 is bigger
+            if (p1.size > p2.size)
             {
-                //background colour is white
-                this.BackColor = Color.White;
-                this.Refresh();
-
-                //stops timer
-                gameLoop.Enabled = false;
-
-                //1 second pause
-                Thread.Sleep(1000);
-
-                //goes to MainScreen
-                Form f = this.FindForm();
-                ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
-                f.Controls.Add(ms);
-                f.Controls.Remove(this);
-
-                //depending on winner
-                ms.Winner(false);
-            }
-
-            //p2 wins logic
-            if (p2.Eaten(p1) == true)
-            {
-                gameLoop.Enabled = false;
-
-                Form f = this.FindForm();
-
-                //if p1 hasn't already won
-                if (f == null)
+                //check to see if p1 ate p2
+                if (p1.Eaten(p2) == true)
                 {
+                    //p1 wins logic
+
+                    //background colour is white
+                    this.BackColor = Color.White;
+                    this.Refresh();
+
+                    //stops timer
+                    gameLoop.Enabled = false;
+
+                    //1 second pause
+                    Thread.Sleep(1000);
+
+                    //goes to MainScreen
+                    Form f = this.FindForm();
+                    ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
+                    f.Controls.Add(ms);
+                    f.Controls.Remove(this);
+
+                    //depending on winner
+                    ms.Winner(false);
                 }
-                else
+            }
+            //p2 is bigger
+            else if (p2.size > p1.size)
+            {
+                //checks to see if p2 
+                if (p2.Eaten(p1) == true)
                 {
+                    //p2 wins logic
+
+                    gameLoop.Enabled = false;
+
+                    
+
                     this.BackColor = Color.White;
                     this.Refresh();
 
                     Thread.Sleep(1000);
 
+                    Form f = this.FindForm();
                     ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
                     f.Controls.Remove(this);
                     ms.Size = f.Size;
                     f.Controls.Add(ms);
                     ms.Winner(true);
+                    ms.Focus();
                 }
             }
 
@@ -535,6 +541,7 @@ namespace DeoNarayanAsquarioSummative
                 e.Graphics.FillRectangle(blueBrush, p1.x, p1.y, p1.size, p1.size);
                 e.Graphics.FillRectangle(redBrush, p2.x, p2.y, p2.size, p2.size);
             }
+            
             if (p1.size >= p2.size)
             {
                 e.Graphics.FillRectangle(redBrush, p2.x, p2.y, p2.size, p2.size);

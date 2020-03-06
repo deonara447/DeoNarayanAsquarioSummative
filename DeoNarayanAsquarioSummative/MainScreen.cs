@@ -58,6 +58,7 @@ namespace DeoNarayanAsquarioSummative
                     f.Controls.Remove(this);
                     gs.Size = f.Size;
                     f.Controls.Add(gs);
+                    gs.Focus();
                     break;
                 case Keys.Escape:
                     //close program
