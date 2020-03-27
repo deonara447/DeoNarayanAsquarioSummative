@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gameLoop = new System.Windows.Forms.Timer(this.components);
+            this.quitLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -38,12 +39,23 @@
             this.gameLoop.Interval = 8;
             this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
             // 
+            // quitLabel
+            // 
+            this.quitLabel.Font = new System.Drawing.Font("Lucida Console", 11.125F, System.Drawing.FontStyle.Bold);
+            this.quitLabel.ForeColor = System.Drawing.Color.Black;
+            this.quitLabel.Location = new System.Drawing.Point(3, 0);
+            this.quitLabel.Name = "quitLabel";
+            this.quitLabel.Size = new System.Drawing.Size(489, 50);
+            this.quitLabel.TabIndex = 3;
+            this.quitLabel.Text = "Press Black to Quit";
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.quitLabel);
             this.DoubleBuffered = true;
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(1200, 700);
@@ -57,5 +69,6 @@
         #endregion
 
         private System.Windows.Forms.Timer gameLoop;
+        private System.Windows.Forms.Label quitLabel;
     }
 }

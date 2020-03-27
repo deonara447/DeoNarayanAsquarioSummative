@@ -30,6 +30,7 @@
         {
             this.titleLabel = new System.Windows.Forms.Label();
             this.startLabel = new System.Windows.Forms.Label();
+            this.escapeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -55,11 +56,23 @@
             this.startLabel.Text = "Press Green to Play";
             this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // escapeLabel
+            // 
+            this.escapeLabel.Font = new System.Drawing.Font("Lucida Console", 7.125F, System.Drawing.FontStyle.Bold);
+            this.escapeLabel.ForeColor = System.Drawing.Color.Black;
+            this.escapeLabel.Location = new System.Drawing.Point(-3, 437);
+            this.escapeLabel.Name = "escapeLabel";
+            this.escapeLabel.Size = new System.Drawing.Size(1200, 57);
+            this.escapeLabel.TabIndex = 2;
+            this.escapeLabel.Text = "Press Black to Quit";
+            this.escapeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.escapeLabel);
             this.Controls.Add(this.startLabel);
             this.Controls.Add(this.titleLabel);
             this.Name = "MainScreen";
@@ -73,5 +86,6 @@
 
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label startLabel;
+        private System.Windows.Forms.Label escapeLabel;
     }
 }

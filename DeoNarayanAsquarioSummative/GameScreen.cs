@@ -64,8 +64,6 @@ namespace DeoNarayanAsquarioSummative
 
         //size of players
         int p1Size, p2Size;
-
-
      
         //speed of food generation
         int foodCounter;
@@ -73,6 +71,9 @@ namespace DeoNarayanAsquarioSummative
         int foodCounterCounter;
         //amount food counter must reach to generate food
         int foodGenerator;
+
+        //to control how long quit label is visible
+        int quitCounter;
 
         public GameScreen()
         {
@@ -104,6 +105,10 @@ namespace DeoNarayanAsquarioSummative
             p2StunnedCounter = 100;
             p1Inverse = false;
             p2Inverse = false;
+
+            //make quit label visible
+            quitLabel.Visible = true;
+            quitCounter = 0;
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -177,6 +182,18 @@ namespace DeoNarayanAsquarioSummative
         private void gameLoop_Tick(object sender, EventArgs e)
         {
             //each tick of timer
+
+            //after 100 ticks remove quit label
+            if (quitCounter == 100)
+            {
+                quitLabel.Visible = false;
+            }
+
+            //only use quit counter if neeeded
+            if (quitLabel.Visible == true)
+            {
+                quitCounter++;
+            }
 
             //if it is time to generate food
             if (foodCounter == foodGenerator)
